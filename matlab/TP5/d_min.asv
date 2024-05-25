@@ -1,0 +1,73 @@
+function [existe_q, bornes_V_p, bornes_V_q_chapeau] = d_min(i_p, j_p, u, D, t, T)
+    taille_fenetre = 2*T + 1;
+    Fpp = []; % Initialisation de Fpp
+
+    % Calcul des bornes de F(p)
+    for i = max(1, i_p - T) : min(size(D, 1), i_p + T)
+        for j = max(1, j_p - T) : min(size(D, 2), j_p + T)
+            if D(i, j)
+                Fpp = [Fpp; i, j, u(i, j)];  % Stockage des coordonnées et valeur du pixel
+            end
+        end
+    end
+
+
+    d_min = inf;
+    q_min = [];
+    for i = 1 : size(Fpp, 1)
+        i_q = Fpp(i, 1);
+        j_q = Fpp(i, 2);
+        d = dissemblance(i_p, j_p, i_q, j_q, u, t, D);
+        if d < d_min
+            d_min = d;
+            q_min = Fpp(i, 1:2);
+        end
+    end
+
+
+
+    % Définir les valeurs de sortie
+    fprintf('q_min: %f\n',q_min);
+    fprintf('i_p,j_p: [%f,%f]\n',i_p,j_p);
+    existe_q = ~isempty(q_min);
+    bornes_V_p = [max(1, i_p - t), min(size(u, 1), i_p + t), max(1, j_p - t), min(size(u, 2), j_p + t)];
+    if existe_q
+        bornes_V_q_chapeau = [max(1, q_min(1) - t), min(size(u, 1), q_min(1) + t), max(1, q_min(2) - t), min(size(u, 2), q_min(2) + t)];
+    else
+        bornes_V_q_chapeau = [];
+    end
+end
+
+
+
+
+function d = dissemblance(i_p,j_p,i_q,j_q,u,t,D)
+    Rp = compute_Rp(i_p,j_p,t,D);
+    cardRp = size(Rp,1)*size(Rp,2);
+    p_indices = sub2ind(size(u),i_p+Rp(:,1),j_p+Rp(:,2));
+    q_indices = sub2ind(size(u),i_q+Rp(:,1),j_q+Rp(:,2));
+        keyboard
+    d = 1/cardRp * sum(norm(u(p_indices) - u(q_indices))^2);
+end
+
+function Rp = compute_Rp(i_p,j_p,t,D)
+     % Initialisation de Rp
+     Rp = [];
+    
+     % Taille de la matrice D
+     [M, N] = size(D);
+     
+     % Parcourir de -t à t pour i et j
+     for i = -t:t
+         for j = -t:t
+             % Vérification de la validité des indices
+             if (i_p + i >= 1 && i_p + i <= M && j_p + j >= 1 && j_p + j <= N)
+                 % Vérification de la condition D(i, j) = 1
+                 if D(i_p + i, j_p + j) == 1
+                     % Ajout de l'indice à la liste
+                     Rp = [Rp; i, j];
+                 end
+             end
+         end
+     end
+end
