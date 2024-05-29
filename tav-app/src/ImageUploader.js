@@ -12,8 +12,12 @@ const ImageUploader = () => {
 
     let formData = new FormData();
     formData.append('image', selectedFile);
+    formData.append('args', 300);
+    formData.append('args', 2);
+    formData.append('args', 0.01);
 
-    axios.post('/upload', formData, {
+    console.log("requesting");
+    axios.post('/upload/TP6', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }

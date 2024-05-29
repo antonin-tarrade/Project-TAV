@@ -1,0 +1,29 @@
+:root {
+    --marian-blue: #424874ff;
+    --savoy-blue: #646BA6;
+    --periwinkle: #dcd6f7ff;
+    --periwinkle-2: #a6b1e1ff;
+    --french-gray: #cacfd6ff;
+    --azure-web: #d6e5e3ff;
+}
+
+.main-logo {
+    font-size: 8em;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(to right,var(--periwinkle-2), var(--periwinkle));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border: 5px solid;
+    border-image: linear-gradient(to right, var(--periwinkle-2), var(--periwinkle)) 1;
+}
+
+.App {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--periwinkle-2);
+}
+

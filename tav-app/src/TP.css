@@ -1,0 +1,11 @@
+.Tp-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30em;
+    width: 30em;
+    border-radius: 30px;
+    background-color: var(--periwinkle);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
