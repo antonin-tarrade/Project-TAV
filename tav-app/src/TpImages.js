@@ -3,21 +3,20 @@ import TP from "./TP";
 import "./TpImages.css";
 import {tp6} from "./TpInfos"
 
-function TpImages () {
-
+function TpImages ({setTp}) {
 
     return (
         <div>
             <h1 className="section-title">Traitement d'images :</h1>    
             <div className="image-section">
-                <TP tp={tp6}/>
-                <TP tp={tp6}/>
-                <TP tp={tp6}/>
+                <TP tp={tp6} setTp={setTp}/>
+                <TP tp={tp6} setTp={setTp}/>
+                <TP tp={tp6} setTp={setTp}/>
             </div>
             <h1 className="section-title">Traitement Audio :</h1>    
             <div className="image-section">
-                <TP tp={tp6}/>
-                <TP tp={tp6}/>
+                <TP tp={tp6} setTp={setTp}/>
+                <TP tp={tp6} setTp={setTp}/>
             </div>
         </div>
     );

@@ -7,6 +7,10 @@
     --azure-web: #d6e5e3ff;
 }
 
+.logo-link{
+    text-decoration: none;
+}
+
 .main-logo {
     font-size: 8em;
     font-weight: bold;

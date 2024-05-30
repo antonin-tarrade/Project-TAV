@@ -51,6 +51,11 @@ def upload_file(tp_number):
 
     # Convert the arguments to numbers
     args = list(map(float, args))
+    # print the arguments
+    print(len(args))
+    for arg in args:
+        print("arg" + arg.__str__() + "\n")
+
     
 
     # Call the appropriate MATLAB function to process the image

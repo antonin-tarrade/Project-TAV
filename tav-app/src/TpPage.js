@@ -1,39 +1,60 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
+import './TpPage.css';
 
-const TpPage = (TpInfo) => {
+const TpPage = ({ tp }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [result, setResult] = useState('');
+  const [parameters, setParameters] = useState(tp.parameters.map((param) => param.default));
 
   const handleFileUpload = async () => {
+    setResult('');
     if (!selectedFile) return;
 
     let formData = new FormData();
     formData.append('image', selectedFile);
-    formData.append('args', 300);
-    formData.append('args', 2);
-    formData.append('args', 0.01);
+    parameters.forEach((param) => {
+      formData.append('args', param);
+    });
 
-    console.log("requesting");
-    axios.post('/upload/TP6', formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
+    axios.post(`/upload/TP${tp.number}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     })
     .then(response => {
-        console.log(response.data);
-        setResult(response.data.processed_image_url
-        );
+      setResult(response.data.processed_image_url);
     })
     .catch(error => {
-        console.error(error);
+      console.error(error);
     });
   };
 
   return (
-    <div>
+    <div className="tp-page-container">
+      {tp.title && <h1 className="tp-title">{tp.title}</h1>}
+      <form className="tp-parameters-form">
+        {tp.parameters.map((param, i) => (
+          <label key={i} className="tp-parameter-label">
+            {param.description} ({param.type}): {parameters[i]}
+            <input 
+              type="range" 
+              value={parameters[i]} 
+              min={param.min}
+              max={param.max}
+              step={param.type === 'int' ? 1 : 0.01}
+              onChange={e => {
+                const newParameters = [...parameters];
+                newParameters[i] = e.target.value;
+                setParameters(newParameters);
+              }} 
+              className="tp-slider"
+            />
+          </label>
+        ))}
+      </form>
       <Dropzone 
         onDrop={acceptedFiles => {
           setSelectedFile(acceptedFiles[0]);
@@ -41,42 +62,27 @@ const TpPage = (TpInfo) => {
         }}
       >
         {({ getRootProps, getInputProps }) => (
-          <div {...getRootProps()} style={dropzoneStyles}>
+          <div {...getRootProps()} className="dropzone-card">
             <input {...getInputProps()} />
             <p>Drag & drop an image here, or click to select one</p>
           </div>
         )}
       </Dropzone>
       {preview && (
-        <div>
+        <div className="image-preview-container">
           <h3>Image Preview:</h3>
-          <img src={preview} alt="Preview" style={imageStyles} />
+          <img src={preview} alt="Preview" className="image-preview" />
         </div>
       )}
-      <button onClick={handleFileUpload} disabled={!selectedFile}>Upload Image</button>
+      <button onClick={handleFileUpload} disabled={!selectedFile} className="upload-button">Upload Image</button>
       {result && (
-        <div>
+        <div className="result-image-container">
           <h3>Processed Image:</h3>
-          <img src={`http://127.0.0.1:5000${result}`} alt="Processed" style={imageStyles} />
+          <img src={`http://127.0.0.1:5000${result}`} alt="Processed" className="image-preview" />
         </div>
       )}
     </div>
   );
-};
-
-const dropzoneStyles = {
-  border: '2px dashed #ccc',
-  borderRadius: '4px',
-  padding: '20px',
-  textAlign: 'center',
-  cursor: 'pointer',
-  margin: '20px 0'
-};
-
-const imageStyles = {
-  maxWidth: '100%',
-  maxHeight: '400px',
-  margin: '20px 0'
 };
 
 export default TpPage;

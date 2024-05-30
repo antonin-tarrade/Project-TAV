@@ -1,7 +1,12 @@
 import React from "react";
 import "./TP.css";
 
-function TP ({tp}) {
+function TP ({tp, setTp}) {
+
+    const onDetailClick = () => {
+        setTp(tp);
+    }
+
     return (
         <div className="tp-container">
             <h1>TP{tp.number} : {tp.title}</h1>
@@ -11,7 +16,7 @@ function TP ({tp}) {
                 </div>
                 <div className="infos-container">    
                     <p>{tp.smallDescription}</p>
-                    <button className="detail-button" type="button">Plus de detail</button>
+                    <button className="detail-button" type="button" onClick={onDetailClick}>Plus de detail</button>
                 </div>
             </div>
         </div>

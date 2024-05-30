@@ -1,21 +1,29 @@
+
+
 const tp6parameters = [
     {
         name: 'nb_iter',
         type: 'int',
         description: 'Nombre d\'itérations',
-        default: 300
+        default: 300,
+        min: 0,
+        max: 1000
     },
     {
         name: 'mu_gvf',
         type: 'float',
         description: 'Coefficient de régularisation',
-        default: 2
+        default: 2,
+        min: 0,
+        max: 10
     },
     {
         name: 'lambda_gvf',
         type: 'float',
         description: 'Pas de temps',
-        default: 0.01
+        default: 0.01,
+        min: 0,
+        max: 1,
     }
 	
 ]
