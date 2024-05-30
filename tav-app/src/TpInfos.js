@@ -24,7 +24,7 @@ export const tp6 = {
     number: 6,
     parameters: tp6parameters,  
     title: "Contours Actifs",
-    smallDescription: "Détection de contours actifs sur une image",
+    smallDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
     imagePreview: 'imgs/tp6.jpeg',
     videoPreview: '',
     fullDescription : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.',

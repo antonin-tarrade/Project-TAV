@@ -8,9 +8,14 @@ function TpImages () {
 
     return (
         <div>
-            <h1>Traitement d'images :</h1>    
+            <h1 className="section-title">Traitement d'images :</h1>    
             <div className="image-section">
                 <TP tp={tp6}/>
+                <TP tp={tp6}/>
+                <TP tp={tp6}/>
+            </div>
+            <h1 className="section-title">Traitement Audio :</h1>    
+            <div className="image-section">
                 <TP tp={tp6}/>
                 <TP tp={tp6}/>
             </div>
