@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
 
-const ImageUploader = () => {
+const TpPage = (TpInfo) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [result, setResult] = useState('');
@@ -79,4 +79,4 @@ const imageStyles = {
   margin: '20px 0'
 };
 
-export default ImageUploader;
+export default TpPage;

@@ -1,13 +1,13 @@
 import './App.css';
 import Header from './Header';
-import TP from './TP';
-import ImageUploader from './ImageUploader';
+import TpImages from './TpImages';
+import TpPage from './TpPage';
 
 function App() {
   return (
     <div className="App">
       <Header /> 
-      <ImageUploader />
+      <TpImages/>
     </div>
   );
 }
