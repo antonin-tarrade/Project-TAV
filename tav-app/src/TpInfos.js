@@ -1,14 +1,10 @@
-import Dropzone from 'react-dropzone'
+import Dropzone from 'react-dropzone';
+import Tp5DropZone from './Tp5DropZone';
 
 
 //--------TP5--------
 
 const tp5parameters = [
-    {
-        name: 'D',
-        type: 'other',
-        description: 'Masque',
-    },
     {
         name: 't',
         type: 'int',
@@ -26,23 +22,14 @@ const tp5parameters = [
         max: 200,
     }
     
-]
+];
 
-const tp5DropZone = (setSelectedFile, setPreview) => (
-    <Dropzone 
-      onDrop={acceptedFiles => {
-        setSelectedFile(acceptedFiles[0]);
-        setPreview(URL.createObjectURL(acceptedFiles[0]));
-      }}
-    >
-      {({ getRootProps, getInputProps }) => (
-        <div {...getRootProps()} className="dropzone-card">
-          <input {...getInputProps()} />
-          <p>Drag & drop an image here, or click to select one</p>
-        </div>
-      )}
-    </Dropzone>
-  );
+const tp5AdditionalParameters = [
+    {
+        name: 'D',
+        description: 'Masque',
+    }
+  ];
 
 export const tp5 = {
     number: 5,
@@ -51,8 +38,15 @@ export const tp5 = {
     smallDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
     videoPreview: 'videos/tp5.mp4',
     fullDescription : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.',
-    dropzone: tp5DropZone
-}
+    dropzone: (setSelectedFile, setPreview, setAdditionalParameters) => (
+      <Tp5DropZone 
+        setSelectedFile={setSelectedFile}
+        setPreview={setPreview}
+        setAdditionalParameters={setAdditionalParameters}
+      />
+    ),
+    additionalParameters: tp5AdditionalParameters
+};
 
 
 

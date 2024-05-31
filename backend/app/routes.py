@@ -18,10 +18,10 @@ matlab_dir = os.path.join(script_dir, '../../matlab')
 # Map TP numbers to MATLAB function names
 matlab_functions = {
     1: 'grayscale_image',
-    6: 'GVF',
     3: 'function_for_tp3',
     4: 'function_for_tp4',
-    5: 'function_for_tp5',
+    5: 'patch_inpainting',
+    6: 'GVF',
 }
 
 @main.route('/upload/TP<int:tp_number>', methods=['POST'])
@@ -55,8 +55,18 @@ def upload_file(tp_number):
     print(len(args))
     for arg in args:
         print("arg" + arg.__str__() + "\n")
+    # Extract the additional arguments from the request
+    addArgs = request.form.getlist('additionalArgs')
 
-    
+    # Convert the arguments to images
+    addArgs = list(map(str, addArgs))
+    # print the arguments
+    print(len(addArgs))
+    for arg in addArgs:
+        print("arg" + arg.__str__() + "\n")
+
+    # Append the additional arguments to the arguments list
+    args = args + addArgs
 
     # Call the appropriate MATLAB function to process the image
     matlab_function = matlab_functions[tp_number]

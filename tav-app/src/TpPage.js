@@ -6,6 +6,7 @@ const TpPage = ({ tp }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [result, setResult] = useState('');
+  const [additionalParameters , setAdditionalParameters] = useState([]);
   const [parameters, setParameters] = useState(tp.parameters.map((param) => param.default));
 
   const handleFileUpload = async () => {
@@ -16,6 +17,10 @@ const TpPage = ({ tp }) => {
     formData.append('image', selectedFile);
     parameters.forEach((param) => {
       formData.append('args', param);
+    });
+
+    additionalParameters.forEach((param) => {
+      formData.append('additionalArgs', param);
     });
 
     axios.post(`/upload/TP${tp.number}`, formData, {
@@ -54,7 +59,7 @@ const TpPage = ({ tp }) => {
           </label>
         ))}
       </form>
-      {tp.dropzone(setSelectedFile, setPreview)}
+      {tp.dropzone(setSelectedFile, setPreview, setAdditionalParameters)}
       {preview && (
         <div className="image-preview-container">
           <h3>Image Preview:</h3>

@@ -1,40 +1,19 @@
-function patch_inpainting (input_image_path,output_image_path,D,t,T)
+function patch_inpainting (input_image_path,output_image_path,t,T,D_img_base64)
 
-	% Lecture de l'image :
+% Lecture de l'image :
 u_0 = double(imread(input_image_path));
-% [nb_lignes,nb_colonnes,nb_canaux] = size(u_0);
+[nb_lignes,nb_colonnes,nb_canaux] = size(u_0);
 u_max = max(u_0(:));
 
-% % Affichage de l'image :
-% subplot(1,2,1)
-% 	imagesc(max(0,min(1,u_0/u_max)),[0 1])
-% 	axis image off
-% 	title('Image originale','FontSize',20)
-% 	if nb_canaux == 1
-% 		colormap gray
-% 	end
-
-% Selection et affichage du domaine a restaurer :
-% disp('Selectionnez un polygone (double-clic pour valider)')
-% [D,x_D,y_D] = roipoly();
-% for k = 1:length(x_D)-1
-% 	line([x_D(k) x_D(k+1)],[y_D(k) y_D(k+1)],'Color','b','LineWidth',2);
-% end
-
-% % Affichage de l'image resultat :
-% u_k = u_0;
-% for c = 1:nb_canaux
-% 	u_k(:,:,c) = (~D).*u_k(:,:,c);
-% end
-% subplot(1,2,2)
-% 	imagesc(max(0,min(1,u_k/u_max)),[0 1])
-% 	axis image off
-% 	title('Image resultat','FontSize',20)
-% 	if nb_canaux == 1
-% 		colormap gray
-% 	end
-% drawnow nocallbacks
-
+% Conversion du masque en base64 en fichier
+D_img_path = 'D_img.png';
+output_D_path = base64ToImage(D_img_base64, D_img_path);
+D = imread(output_D_path) > 0;
+D = D(:,:,1);
+u_k = u_0;
+for c = 1:nb_canaux
+	u_k(:,:,c) = (~D).*u_k(:,:,c);
+end
 
 % Initialisation de la frontiere de D :
 delta_D = frontiere(D);
