@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Dropzone from 'react-dropzone';
 import './TpPage.css';
 
 const TpPage = ({ tp }) => {
@@ -55,19 +54,7 @@ const TpPage = ({ tp }) => {
           </label>
         ))}
       </form>
-      <Dropzone 
-        onDrop={acceptedFiles => {
-          setSelectedFile(acceptedFiles[0]);
-          setPreview(URL.createObjectURL(acceptedFiles[0]));
-        }}
-      >
-        {({ getRootProps, getInputProps }) => (
-          <div {...getRootProps()} className="dropzone-card">
-            <input {...getInputProps()} />
-            <p>Drag & drop an image here, or click to select one</p>
-          </div>
-        )}
-      </Dropzone>
+      {tp.dropzone(setSelectedFile, setPreview)}
       {preview && (
         <div className="image-preview-container">
           <h3>Image Preview:</h3>

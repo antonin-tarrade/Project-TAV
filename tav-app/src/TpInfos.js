@@ -1,5 +1,62 @@
+import Dropzone from 'react-dropzone'
 
 
+//--------TP5--------
+
+const tp5parameters = [
+    {
+        name: 'D',
+        type: 'other',
+        description: 'Masque',
+    },
+    {
+        name: 't',
+        type: 'int',
+        description: 'Voisinage d\'un pixel de taille (2t+1) x (2t+1)',
+        default: 4,
+        min: 0,
+        max: 20
+    },
+    {
+        name: 'T',
+        type: 'int',
+        description: 'Fenetre de recherche de taille (2T+1) x (2T+1)',
+        default: 50,
+        min: 0,
+        max: 200,
+    }
+    
+]
+
+const tp5DropZone = (setSelectedFile, setPreview) => (
+    <Dropzone 
+      onDrop={acceptedFiles => {
+        setSelectedFile(acceptedFiles[0]);
+        setPreview(URL.createObjectURL(acceptedFiles[0]));
+      }}
+    >
+      {({ getRootProps, getInputProps }) => (
+        <div {...getRootProps()} className="dropzone-card">
+          <input {...getInputProps()} />
+          <p>Drag & drop an image here, or click to select one</p>
+        </div>
+      )}
+    </Dropzone>
+  );
+
+export const tp5 = {
+    number: 5,
+    parameters: tp5parameters,  
+    title: "Rapieceage de texture",
+    smallDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
+    videoPreview: 'videos/tp5.mp4',
+    fullDescription : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.',
+    dropzone: tp5DropZone
+}
+
+
+
+// ------TP6--------
 const tp6parameters = [
     {
         name: 'nb_iter',
@@ -28,12 +85,28 @@ const tp6parameters = [
 	
 ]
 
+const tp6DropZone = (setSelectedFile, setPreview) => (
+    <Dropzone 
+      onDrop={acceptedFiles => {
+        setSelectedFile(acceptedFiles[0]);
+        setPreview(URL.createObjectURL(acceptedFiles[0]));
+      }}
+    >
+      {({ getRootProps, getInputProps }) => (
+        <div {...getRootProps()} className="dropzone-card">
+          <input {...getInputProps()} />
+          <p>Drag & drop an image here, or click to select one</p>
+        </div>
+      )}
+    </Dropzone>
+  );
+
 export const tp6 = {
     number: 6,
     parameters: tp6parameters,  
     title: "Contours Actifs",
     smallDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
     imagePreview: 'imgs/tp6.jpeg',
-    videoPreview: '',
     fullDescription : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.',
+    dropzone: tp6DropZone
 }

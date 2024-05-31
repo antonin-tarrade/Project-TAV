@@ -1,7 +1,7 @@
 import React from "react";
 import TP from "./TP";
 import "./TpImages.css";
-import {tp6} from "./TpInfos"
+import {tp5,tp6} from "./TpInfos"
 
 function TpImages ({setTp}) {
 
@@ -9,7 +9,7 @@ function TpImages ({setTp}) {
         <div>
             <h1 className="section-title">Traitement d'images :</h1>    
             <div className="image-section">
-                <TP tp={tp6} setTp={setTp}/>
+                <TP tp={tp5} setTp={setTp}/>
                 <TP tp={tp6} setTp={setTp}/>
                 <TP tp={tp6} setTp={setTp}/>
             </div>
