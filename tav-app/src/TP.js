@@ -12,7 +12,7 @@ function TP({ tp, setTp }) {
       <div className="main-conta">
         <div className="img-container">
           {tp.videoPreview ? (
-            <video className="preview-video" controls autoPlay>
+            <video className="preview-video" controls autoPlay loop>
               <source src={tp.videoPreview} type="video/mp4" />
             </video>
           ) : (

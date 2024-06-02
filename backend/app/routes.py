@@ -18,10 +18,9 @@ matlab_dir = os.path.join(script_dir, '../../matlab')
 # Map TP numbers to MATLAB function names
 matlab_functions = {
     1: 'grayscale_image',
-    3: 'function_for_tp3',
-    4: 'function_for_tp4',
     5: 'patch_inpainting',
     6: 'GVF',
+    8: 'TV_Hilbert',
 }
 
 @main.route('/upload/TP<int:tp_number>', methods=['POST'])

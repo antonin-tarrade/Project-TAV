@@ -7,7 +7,7 @@ function Header () {
             <a href="/" className="logo-link">
                 <div className="main-logo header-logo"> TAV </div>
             </a>
-            <h1>Rapport de TAV</h1>
+            <h1>Rapport de TAV - Antonin TARRADE</h1>
             <a href="/" className="about-link">A propos</a>
         </header>
     );
