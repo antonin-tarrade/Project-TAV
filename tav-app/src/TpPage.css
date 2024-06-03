@@ -73,6 +73,8 @@
   
   .upload-button {
     display: block;
+    width: 10em;
+    height: 2.5em;
     margin: 20px auto;
     padding: 10px 20px;
     background-color: var(--savoy-blue);

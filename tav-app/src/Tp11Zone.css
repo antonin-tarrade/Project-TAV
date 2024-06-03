@@ -25,9 +25,32 @@
     width: 200px;
   }
   
-  .button {
+  .get-music-button {
+    display: block;
+    width: 20em;
+    height: 3em;
+    margin: 20px auto;
     padding: 10px 20px;
-    font-size: 16px;
+    background-color: var(--savoy-blue);
+    color: var(--azure-web);
+    border: none;
+    border-radius: 20px;
+    font-size: 1em;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
   }
   
+  .get-music-button:disabled {
+    background-color: var(--french-gray);
+    cursor: not-allowed;
+  }
+  
+  .get-music-button:hover:enabled {
+    background-color: var(--marian-blue);
+    transform: scale(1.05);
+  }
+  
+  .get-music-button:active:enabled {
+    transform: scale(0.95);
+  }

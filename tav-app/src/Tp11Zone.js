@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import './Tp11Zone.css'; // Import the CSS file
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Tp11Zone = () => {
     const [musicUrl, setMusicUrl] = useState('');
@@ -10,6 +11,7 @@ const Tp11Zone = () => {
     const [musicNumber , setMusicNumber] = useState(0);
     const audioRef = useRef(null);
     const [result, setResult] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
 
     const fetchMusic = async () => {
@@ -49,6 +51,7 @@ const Tp11Zone = () => {
     };
 
     const handleIdentify =  () => {
+        setIsLoading(true);
         const parameters = [musicNumber, startTime, endTime];
         const params = new URLSearchParams();
         parameters.forEach((param) => {
@@ -61,6 +64,7 @@ const Tp11Zone = () => {
         })
         .then(response => {
             setResult(response.data.title);
+            setIsLoading(false);
         })
         .catch(error => {
             console.error(error);
@@ -69,7 +73,7 @@ const Tp11Zone = () => {
 
     return (
     <div className="container">
-        <button onClick={fetchMusic} className="button">Récuperer une musique aléatoire</button>
+        <button onClick={fetchMusic} className="get-music-button">Récuperer une musique aléatoire</button>
         {musicUrl && (
         <div>
             <audio
@@ -106,8 +110,10 @@ const Tp11Zone = () => {
                 />
             </div>
             </div>
-            <button onClick={handlePlaySegment} className="button">Jouer l'extrait</button>
-            <button onClick={handleIdentify} className="button">Identifier</button>
+            <button onClick={handlePlaySegment} className="upload-button">Jouer l'extrait</button>
+            <button onClick={handleIdentify} className="upload-button" disabled={isLoading}>
+                {isLoading ? <CircularProgress size={24} style={{ color: "#008000" }} /> : "Identifier"}
+            </button>
         {result && <h2>Résultat : {result}</h2>}
         </div>
         )}

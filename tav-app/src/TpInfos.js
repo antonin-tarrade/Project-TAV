@@ -36,10 +36,10 @@ const tp5AdditionalParameters = [
 export const tp5 = {
     number: 5,
     parameters: tp5parameters,  
-    title: "Rapieceage de texture",
-    smallDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
+    title: "Rapiéçage de texture",
+    smallDescription: "L'inpainting par rapiéçage est une technique qui comble les parties manquantes d'une image en utilisant des morceaux provenant d'autres parties de l'image. Cette méthode permet de restaurer l'image en préservant les textures environnantes.",
     videoPreview: 'videos/tp5.mp4',
-    fullDescription : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.',
+    fullDescription : "La méthode d'inpainting par rapiéçage (patch-based inpainting) consiste à combler les zones manquantes d'une image en utilisant des morceaux (patchs) extraits d'autres parties de l'image. En sélectionnant et en intégrant intelligemment ces patchs, l'algorithme permet de restaurer l'image de manière cohérente et réaliste, en préservant les textures et les structures visuelles environnantes.",
     dropzone: (setSelectedFile, setPreview, setAdditionalParameters) => (
       <Tp5DropZone 
         setSelectedFile={setSelectedFile}
@@ -101,9 +101,9 @@ export const tp6 = {
     number: 6,
     parameters: tp6parameters,  
     title: "Contours Actifs",
-    smallDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
+    smallDescription: "Un contour actif est un modèle de courbe déformable qui évolue au cours du temps pour se fixer sur les contours, ce qui peut aider l’utilisateur à segmenter les objets visibles dans une image.",
     videoPreview: 'videos/tp6.mp4',
-    fullDescription : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.',
+    fullDescription : "Les contours actifs, notamment avec la diffusion vers les contours, visent à améliorer les résultats en ajustant la force externe pour attirer le contour actif vers les contours visibles dans l'image. Cette technique utilise un modèle de force externe tel que le GVF (Gradient Vector Flow), qui est calculé en résolvant les équations de diffusion généralisées. En itérant à travers ces équations, le champ de force externe GVF peut être calculé et affiché pour guider efficacement le contour actif vers les contours souhaités dans l'image.",
     dropzone: tp6DropZone
 }
 
@@ -114,9 +114,9 @@ const tp8parameters = [
         name: 'nb_iter',
         type: 'int',
         description: 'Nombre d\'itérations',
-        default: 1000,
+        default: 500,
         min: 0,
-        max: 3000
+        max: 1000
     },
     {
         name: 'epsilon',
@@ -173,9 +173,9 @@ export const tp8 = {
     number: 8,
     parameters: tp8parameters,  
     title: "Débruitage Hilbert-TV",
-    smallDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
+    smallDescription: "Le modèle TV-Hilbert décompose les images en leur structure et leur texture en utilisant un filtre passe-bas et la transformation de Fourier, suivi d'un schéma de descente de gradient pour une séparation précise.",
     videoPreview: 'videos/tp8.mp4',
-    fullDescription : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.',
+    fullDescription : "Le modèle TV-Hilbert offre une approche mixte pour séparer la structure et la texture d'une image. En utilisant un filtre passe-bas et la transformation de Fourier, il contraint les spectres de l'image pour une meilleure adaptation au problème. En utilisant un schéma de descente de gradient, il permet de séparer efficacement la structure et la texture de l'image.",
     dropzone: tp8DropZone
 }
 

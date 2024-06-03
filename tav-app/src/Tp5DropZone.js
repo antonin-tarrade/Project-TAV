@@ -2,6 +2,9 @@ import React, { useRef, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import { ReactSketchCanvas } from 'react-sketch-canvas';
 
+const MAX_WIDTH = 800; // Définissez la largeur maximale souhaitée pour le canevas
+const MAX_HEIGHT = 600; // Définissez la hauteur maximale souhaitée pour le canevas
+
 const Tp5DropZone = ({ setSelectedFile, setPreview, setAdditionalParameters }) => {
   const [image, setImage] = useState(null);
   const [drawMode, setDrawMode] = useState(false);
@@ -19,7 +22,21 @@ const Tp5DropZone = ({ setSelectedFile, setPreview, setAdditionalParameters }) =
     img.src = imageUrl;
     img.onload = () => {
       const { width, height } = img;
-      setCanvasDimensions({ width, height });
+      let newWidth = width;
+      let newHeight = height;
+
+      if (width > MAX_WIDTH || height > MAX_HEIGHT) {
+        const aspectRatio = width / height;
+        if (width > height) {
+          newWidth = MAX_WIDTH;
+          newHeight = MAX_WIDTH / aspectRatio;
+        } else {
+          newHeight = MAX_HEIGHT;
+          newWidth = MAX_HEIGHT * aspectRatio;
+        }
+      }
+
+      setCanvasDimensions({ width: newWidth, height: newHeight });
       setImage(imageUrl);
     };
   };
@@ -96,6 +113,7 @@ const Tp5DropZone = ({ setSelectedFile, setPreview, setAdditionalParameters }) =
       </Dropzone>
       {image && (
         <div>
+          <h3>Détourer la partie à supprimer</h3>
           <button onClick={() => setDrawMode(!drawMode)}>
             {drawMode ? 'Arrêter la sélection' : 'Commencer la sélection'}
           </button>

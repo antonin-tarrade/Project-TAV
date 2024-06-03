@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react'
 import Dropzone from 'react-dropzone';
 import './Tp10DropZone.css'
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Tp10DropZone = ({tpParameters}) => {
     const [selectedFile,setSelectedFile] = useState('');
@@ -10,6 +11,7 @@ const Tp10DropZone = ({tpParameters}) => {
     const [taux,setTaux] = useState('');
     const [resultImg,setResultImg] = useState('');
     const [parameters,setParameters] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
        setParameters(tpParameters)
@@ -17,8 +19,10 @@ const Tp10DropZone = ({tpParameters}) => {
 
 
     const handleSubmit = () => {
+        setIsLoading(true);
         setResultAudioUrl('');
         setResultImg('');
+        setTaux('');
         if (!selectedFile) return;
         let formData = new FormData();
         formData.append('audio',selectedFile);
@@ -34,6 +38,7 @@ const Tp10DropZone = ({tpParameters}) => {
             setResultAudioUrl(response.data.audio_url);
             setResultImg(response.data.image_url);
             setTaux(response.data.taux)
+            setIsLoading(false);
         })
         .catch(error => {
             console.error(error);
@@ -62,9 +67,9 @@ const Tp10DropZone = ({tpParameters}) => {
             onClick={handleSubmit} 
             className='upload-button' 
             type="button"
-            disabled={!selectedFile}
+            disabled={!selectedFile|| isLoading}
             >
-            Compresser
+                {isLoading ? <CircularProgress size={24} style={{ color: "#008000" }} /> : "Compresser"}
             </button>
             
             {resultAudioUrl && <div className='audio-results'>

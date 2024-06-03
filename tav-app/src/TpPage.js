@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './TpPage.css';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const TpPage = ({ tp }) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -8,9 +9,11 @@ const TpPage = ({ tp }) => {
   const [result, setResult] = useState('');
   const [additionalParameters , setAdditionalParameters] = useState([]);
   const [parameters, setParameters] = useState(tp.parameters.map((param) => param.default));
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFileUpload = async () => {
     setResult('');
+    setIsLoading(true);
     if (!selectedFile) return;
     let formData = new FormData();
     formData.append('image', selectedFile);
@@ -29,6 +32,7 @@ const TpPage = ({ tp }) => {
     })
     .then(response => {
       setResult(response.data.processed_image_url);
+      setIsLoading(false);
     })
     .catch(error => {
       console.error(error);
@@ -38,8 +42,9 @@ const TpPage = ({ tp }) => {
   return (
     <div className="tp-page-container">
       {tp.title && <h1 className="tp-title">{tp.title}</h1>}
+      <p className="tp-description">{tp.fullDescription}</p>
       <form className="tp-parameters-form">
-        <h2>Paramètres : </h2>
+        {parameters.length > 0 && <h2>Paramètres : </h2>}
         {tp.parameters.map((param, i) => (
           <label key={i} className="tp-parameter-label">
             {param.description} ({param.type}): {parameters[i]}
@@ -68,9 +73,11 @@ const TpPage = ({ tp }) => {
       )}
       {tp.type !== 'audio' && 
 
-      <button onClick={handleFileUpload} disabled={!selectedFile} className="upload-button">
-        Traiter l'image
-        </button>
+      <button onClick={handleFileUpload} disabled={!selectedFile|| isLoading} 
+        className="upload-button"
+      >
+        {isLoading ? <CircularProgress size={24} style={{ color: "#008000" }} /> : "Traiter l'image"}
+    </button>
       
       }
       {result && (
