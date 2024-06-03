@@ -1,5 +1,7 @@
 import Dropzone from 'react-dropzone';
 import Tp5DropZone from './Tp5DropZone';
+import Tp10DropZone from './Tp10DropZone';
+import Tp11Zone from './Tp11Zone';
 
 // ------TPs IMAGES--------
 //--------TP5--------
@@ -89,7 +91,7 @@ const tp6DropZone = (setSelectedFile, setPreview) => (
       {({ getRootProps, getInputProps }) => (
         <div {...getRootProps()} className="dropzone-card">
           <input {...getInputProps()} />
-          <p>Drag & drop an image here, or click to select one</p>
+          <p>Glisser-déposer une image ici, ou cliquer pour en sélectionner une</p>
         </div>
       )}
     </Dropzone>
@@ -161,7 +163,7 @@ const tp8DropZone = (setSelectedFile, setPreview) => (
       {({ getRootProps, getInputProps }) => (
         <div {...getRootProps()} className="dropzone-card">
           <input {...getInputProps()} />
-          <p>Drag & drop an image here, or click to select one</p>
+          <p>Glisser-déposer une image ici, ou cliquer pour en sélectionner une</p>
         </div>
       )}
     </Dropzone>
@@ -181,16 +183,75 @@ export const tp8 = {
 
 // ------TPs AUDIO--------
 
-// ------TP11--------
-const tp11parameters = [
-    {
-        name: 'nb_iter',
-        type: 'int',
-        description: 'Nombre d\'itérations',
-        default: 1000,
-        min: 0,
-        max: 3000
-    },
 
-  
+// ------TP10-------
+const tp10Parameters = [
+  {
+    name:'m',
+    type: 'int',
+    description: 'les m coefficients de Fourier les plus élevés a conserver',
+    default:100,
+    min:1,
+    max:1000
+  },
+  {
+    name:'df',
+    type: 'float',
+    description: 'coeficient de decimation (intervalle entre chaque ligne/colonne)',
+    default:2,
+    min:1,
+    max:10
+  },
 ]
+
+
+export const tp10 = {
+    number: 10,
+    type: 'audio',
+    title: "Compréssion de  signaux audionumériques",
+    smallDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
+    imagePreview: 'imgs/tp10.png',
+    fullDescription : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.',
+    dropzone: (a,b,c,parameters) => (
+      <Tp10DropZone 
+      tpParameters={parameters}
+      />),
+    parameters: tp10Parameters
+}
+
+
+// ------TP11--------
+const tp11extraParameters = [
+    {
+        name: 'numero_morceau',
+        type: 'int',
+        description: 'Numéro du morceau',
+    },
+    {
+        name: 'debut_extrait',
+        type: 'float',
+        description: 'Début de l\'extrait',
+    },
+    {
+        name: 'duree_extrait',
+        type: 'float',
+        description: 'Durée de l\'extrait',
+    }
+  ];
+
+export const tp11 = {
+    number: 11,
+    type: 'audio',
+    title: "Reconnaissance musicale",
+    smallDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
+    imagePreview: 'imgs/tp11.jpg',
+    fullDescription : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.',
+    additionalParameters: tp11extraParameters,
+    dropzone: (l,i,setAdditionalParameters) => (
+      <Tp11Zone 
+      setAdditionalParameters={setAdditionalParameters}
+      />),
+    parameters: []
+}
+
+

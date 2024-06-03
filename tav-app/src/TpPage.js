@@ -12,7 +12,6 @@ const TpPage = ({ tp }) => {
   const handleFileUpload = async () => {
     setResult('');
     if (!selectedFile) return;
-
     let formData = new FormData();
     formData.append('image', selectedFile);
     parameters.forEach((param) => {
@@ -40,6 +39,7 @@ const TpPage = ({ tp }) => {
     <div className="tp-page-container">
       {tp.title && <h1 className="tp-title">{tp.title}</h1>}
       <form className="tp-parameters-form">
+        <h2>Paramètres : </h2>
         {tp.parameters.map((param, i) => (
           <label key={i} className="tp-parameter-label">
             {param.description} ({param.type}): {parameters[i]}
@@ -59,17 +59,23 @@ const TpPage = ({ tp }) => {
           </label>
         ))}
       </form>
-      {tp.dropzone(setSelectedFile, setPreview, setAdditionalParameters)}
+      {parameters && tp.dropzone(setSelectedFile, setPreview, setAdditionalParameters,parameters)}
       {preview && (
         <div className="image-preview-container">
-          <h3>Image Preview:</h3>
+          <h3>Aperçu de l'image:</h3>
           <img src={preview} alt="Preview" className="image-preview" />
         </div>
       )}
-      <button onClick={handleFileUpload} disabled={!selectedFile} className="upload-button">Upload Image</button>
+      {tp.type !== 'audio' && 
+
+      <button onClick={handleFileUpload} disabled={!selectedFile} className="upload-button">
+        Traiter l'image
+        </button>
+      
+      }
       {result && (
         <div className="result-image-container">
-          <h3>Processed Image:</h3>
+          <h3>Image traitée:</h3>
           <img src={`http://127.0.0.1:5000${result}`} alt="Processed" className="image-preview" />
         </div>
       )}

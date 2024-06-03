@@ -1,7 +1,7 @@
 import React from "react";
 import TP from "./TP";
 import "./TpImages.css";
-import {tp5,tp6,tp8} from "./TpInfos"
+import {tp5,tp6,tp8,tp10,tp11} from "./TpInfos"
 
 function TpImages ({setTp}) {
 
@@ -15,8 +15,8 @@ function TpImages ({setTp}) {
             </div>
             <h1 className="section-title">Traitement Audio :</h1>    
             <div className="image-section">
-                <TP tp={tp6} setTp={setTp}/>
-                <TP tp={tp6} setTp={setTp}/>
+                <TP tp={tp11} setTp={setTp}/>
+                <TP tp={tp10} setTp={setTp}/>
             </div>
         </div>
     );
