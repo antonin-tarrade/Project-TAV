@@ -1,4 +1,4 @@
-function y = extrait(y, f_ech, duree_extrait)
+function y = extrait(y, f_ech, debut_extrait,duree_extrait)
 
 	% Découpage d'un extrait de duree_extrait secondes dans y
 	%	
@@ -10,6 +10,6 @@ function y = extrait(y, f_ech, duree_extrait)
 	% Outputs :
 	%	y					: extrait de y de duree_extrait secondes
 
-	debut_extrait = randi(length(y) - f_ech*duree_extrait + 1);
+	% debut_extrait = randi(length(y) - f_ech*duree_extrait + 1);
 	y = y(debut_extrait : debut_extrait + f_ech*duree_extrait - 1);
 end

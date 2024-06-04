@@ -1,7 +1,7 @@
 clear all;
 
 % Chemin vers les morceaux
-chemin = "./Shazam/base_maxi/";
+chemin = "../matlab/TP11/Shazam/base_maxi/";
 chemin_reechantillone = "./Shazam/base_mini/";
 fichiers = dir(chemin_reechantillone + "*.ogg");
 

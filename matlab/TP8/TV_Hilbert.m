@@ -5,7 +5,7 @@ L = taille_ecran(3);
 H = taille_ecran(4);
 fig = figure('Name','Debruitage par variation totale',...
 	'Position',[0.05*L,0.1*H,0.9*L,0.7*H]);
-
+set(fig, 'Visible', 'off');
 % Lecture de l'image u :
 u = imread(input_image_path);
 u = double(u);

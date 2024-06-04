@@ -173,9 +173,9 @@ export const tp8 = {
     number: 8,
     parameters: tp8parameters,  
     title: "Débruitage Hilbert-TV",
-    smallDescription: "Le modèle TV-Hilbert décompose les images en leur structure et leur texture en utilisant un filtre passe-bas et la transformation de Fourier, suivi d'un schéma de descente de gradient pour une séparation précise.",
+    smallDescription: "Le modèle TV-Hilbert décompose les images en leur structure et leur texture en utilisant un filtre passe-bas suivi d'un schéma de descente de gradient pour une séparation précise.",
     videoPreview: 'videos/tp8.mp4',
-    fullDescription : "Le modèle TV-Hilbert offre une approche mixte pour séparer la structure et la texture d'une image. En utilisant un filtre passe-bas et la transformation de Fourier, il contraint les spectres de l'image pour une meilleure adaptation au problème. En utilisant un schéma de descente de gradient, il permet de séparer efficacement la structure et la texture de l'image.",
+    fullDescription : "Le modèle TV-Hilbert offre une approche mixte pour séparer la structure et la texture d'une image. En utilisant un filtre passe-bas et en passant dans le domaine fréquenciel par une transformation de Fourier, il contraint les spectres de l'image pour une meilleure adaptation au problème. Pour finir, il permet, grace  à un schéma de descente de gradient,  de séparer efficacement la structure et la texture de l'image.",
     dropzone: tp8DropZone
 }
 
@@ -189,7 +189,7 @@ const tp10Parameters = [
   {
     name:'m',
     type: 'int',
-    description: 'les m coefficients de Fourier les plus élevés a conserver',
+    description: 'les m coefficients de Fourier les plus élevés à conserver',
     default:100,
     min:1,
     max:1000
@@ -209,9 +209,9 @@ export const tp10 = {
     number: 10,
     type: 'audio',
     title: "Compréssion de  signaux audionumériques",
-    smallDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
+    smallDescription: "Grâce à un sonagramme, il est possible de retrouver quelles fréquences contribuent le plus à la reconstruction d'un signal audio à un instant donné. Il est donc facile de réaliser une compression naîve du signal",
     imagePreview: 'imgs/tp10.png',
-    fullDescription : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.',
+    fullDescription : "Grâce a un sonagramme, il est possible de retrouver quelles fréquences contribuent le plus à la reconstruction d'un signal audio à un instant donné. Il est donc possible de conserver uniquement une faible proportion des coefficients de Fourier les plus élevés, afin de réaliser une compression ndu signal. Ajouté a cela, nous pouvons y ajouter une strategie de décimation pou atteindre un taux de compression optimal",
     dropzone: (a,b,c,parameters) => (
       <Tp10DropZone 
       tpParameters={parameters}
@@ -243,9 +243,9 @@ export const tp11 = {
     number: 11,
     type: 'audio',
     title: "Reconnaissance musicale",
-    smallDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
+    smallDescription: "La réalisation d’un système de reconnaissance musicale nécessite de définir une empreinte qui puisse caractériser chaque enregistrement musical sans ambiguïté. Pour cela on peut utiliser les pics spectraux pour créer une empreinte sonore propre à chaque enregistrement musical",
     imagePreview: 'imgs/tp11.jpg',
-    fullDescription : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.',
+    fullDescription : "La réalisation d’un système de reconnaissance musicale nécessite de définir une empreinte qui puisse caractériser chaque enregistrement musical sans ambiguïté. Pour cela on peut utiliser les pics spectraux pour créer une empreinte sonore propre à chaque enregistrement musical. Pour augmenter le pourcentage de bonnes reconnaissances, on peut ajouter une condition sur la cohérence entre les instants d’apparition des paires de pics de l’extrait et ceux du morceau présent dans la base.",
     additionalParameters: tp11extraParameters,
     dropzone: (l,i,setAdditionalParameters) => (
       <Tp11Zone 
